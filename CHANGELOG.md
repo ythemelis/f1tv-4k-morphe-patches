@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.1.0...v1.1.1) (2026-10-23)
+
+### 🐛 Bug Fixes
+
+* **colorspace:** resolve smali syntax error in requireHLG and require2020PQ bytecode injection ([e0bdcd9](https://github.com/ythemelis/f1tv-4k-morphe-patches/commit/e0bdcd99be403bf487446c5b65459f6ad367dfb6))
+
 ## [1.1.0](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.0.0...v1.1.0) (2026-10-23)
 
 ### ✨ New Features
