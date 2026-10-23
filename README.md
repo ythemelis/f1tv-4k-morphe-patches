@@ -17,7 +17,25 @@ Using Morphe, you can patch F1 TV directly on your device via **Morphe Manager**
 ## 🧩 Included Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v0.0.0](https://github.com/ythemelis/f1tv-4k-morphe-patches/releases/tag/v0.0.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;0 patches total
+> **[v1.0.0](https://github.com/ythemelis/f1tv-4k-morphe-patches/releases/tag/v1.0.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;4 patches total
+<details open>
+<summary>📺 F1 TV (Android TV) (Android TV)&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.0.49.5 | 3.0.49.4 |
+| :---: | :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Adaptive Playback Decoder Hints](#adaptive-playback-decoder-hints) | Sets max-width and max-height hints on the secure HEVC decoder to prevent TM4014 allocation crashes on MediaTek / Amlogic chipsets during resolution ramp-up. |  |
+| [Dynamic HDR / Colorspace Routing](#dynamic-hdr-colorspace-routing) | Routes HLG HDR streams per device at runtime: native HLG for supported TVs, PQ reroute for NVIDIA Shield, and direct rendering for MediaTek/Amlogic TVs. |  |
+| [Enable Video Quality Selector](#enable-video-quality-selector) | Enables the in-app manual video quality (resolution / bitrate) selector in the playback options menu. |  |
+| [Unlock UHD / 4K Playback](#unlock-uhd-4k-playback) | Enables 2160p (4K UHD) streaming by bypassing device whitelist checks, display resolution limits, and HDR capability gates. |  |
+
+</details>
+
 <!-- PATCHES_END -->
 
 ### Patch Details
