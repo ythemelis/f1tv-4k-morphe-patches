@@ -1,6 +1,6 @@
 package app.morphe.patches.f1tv
 
-import app.morphe.patcher.extensions.InstructionExtensions.returnEarly
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.f1tv.Constants.COMPATIBILITY_F1TV
 
@@ -14,6 +14,12 @@ val videoQualitySelectorPatch = bytecodePatch(
 
     execute {
         // Force isVideoQualityEnabled() -> true in DiagnosticsPreferenceManagerImpl
-        QualitySelectorFingerprint.methodOrNull?.returnEarly(true)
+        QualitySelectorFingerprint.method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x1
+                return v0
+            """
+        )
     }
 }

@@ -1,7 +1,6 @@
 package app.morphe.patches.f1tv
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.returnEarly
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.f1tv.Constants.COMPATIBILITY_F1TV
 
@@ -78,12 +77,24 @@ val unlock4kPlaybackPatch = bytecodePatch(
         // F1's 2160p tier is HLG (HDR type 3). Devices/displays reporting only HDR10 (type 2)
         // or SDR make the core withhold 2160p upstream. Forcing doesDisplaySupport -> true
         // makes the core serve the 2160p tiles, which the system pipeline renders or downconverts.
-        DisplayHdrSpoofFingerprint.methodOrNull?.returnEarly(true)
+        DisplayHdrSpoofFingerprint.method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x1
+                return v0
+            """
+        )
 
         // 4. Disable NVIDIA post-process workaround
         // On NVIDIA Shield devices, deviceNeedsNoPostProcessWorkaround sets "no-post-process"=1,
         // which may cause ClearVR to select lower quality tiles.
-        QuirksWorkaroundFingerprint.methodOrNull?.returnEarly(false)
+        QuirksWorkaroundFingerprint.method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x0
+                return v0
+            """
+        )
 
         // 5. Override DecoderCapability protobuf reporting
         // Devices without ClearVR quirk profiles report 0 tile slots/rows/cols,
