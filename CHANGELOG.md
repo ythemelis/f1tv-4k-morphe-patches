@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.0.0...v1.1.0) (2026-10-23)
+
+### ✨ New Features
+
+* **f1tv:** support future versions in patch compatibility and readme ([c6232fa](https://github.com/ythemelis/f1tv-4k-morphe-patches/commit/c6232fa90be1756e71b11a003faeccee649cc312))
+
 ## 1.0.0 (2026-10-23)
 
 ### 🐛 Bug Fixes
