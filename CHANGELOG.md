@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.1.1...v1.1.2) (2026-10-23)
+
+### 🐛 Bug Fixes
+
+* **quality-selector:** ensure non-null implementation when matching isVideoQualityEnabled ([d23be52](https://github.com/ythemelis/f1tv-4k-morphe-patches/commit/d23be526784ea602e5d22e4677e34f706534c6f2))
+
 ## [1.1.1](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.1.0...v1.1.1) (2026-10-23)
 
 ### 🐛 Bug Fixes

@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-23T10:34:02",
-  "description": "## [1.1.1](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.1.0...v1.1.1) (2026-10-23)\n\n### 🐛 Bug Fixes\n\n* **colorspace:** resolve smali syntax error in requireHLG and require2020PQ bytecode injection ([e0bdcd9](https://github.com/ythemelis/f1tv-4k-morphe-patches/commit/e0bdcd99be403bf487446c5b65459f6ad367dfb6))",
-  "download_url": "https://github.com/ythemelis/f1tv-4k-morphe-patches/releases/download/v1.1.1/patches-1.1.1.mpp",
+  "created_at": "2026-10-23T10:45:38",
+  "description": "## [1.1.2](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.1.1...v1.1.2) (2026-10-23)\n\n### 🐛 Bug Fixes\n\n* **quality-selector:** ensure non-null implementation when matching isVideoQualityEnabled ([d23be52](https://github.com/ythemelis/f1tv-4k-morphe-patches/commit/d23be526784ea602e5d22e4677e34f706534c6f2))",
+  "download_url": "https://github.com/ythemelis/f1tv-4k-morphe-patches/releases/download/v1.1.2/patches-1.1.2.mpp",
   "signature_download_url": "",
-  "version": "1.1.1"
+  "version": "1.1.2"
 }
