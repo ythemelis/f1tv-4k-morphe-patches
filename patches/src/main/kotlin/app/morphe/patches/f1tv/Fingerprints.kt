@@ -13,37 +13,46 @@ object QualitySelectorFingerprint : Fingerprint(
 )
 
 object QuirksWorkaroundFingerprint : Fingerprint(
-    definingClass = "Lcom/tiledmedia/clearvrdecoder/Quirks;",
     name = "deviceNeedsNoPostProcessWorkaround",
-    returnType = "Z"
+    returnType = "Z",
+    custom = { method, classDef ->
+        method.implementation != null && classDef.type.contains("Quirks")
+    }
 )
 
 object DisplayHdrSpoofFingerprint : Fingerprint(
-    definingClass = "Lcom/tiledmedia/clearvrview/DeviceParameters;",
     name = "doesDisplaySupport",
-    returnType = "Z"
+    returnType = "Z",
+    custom = { method, classDef ->
+        method.implementation != null && classDef.type.contains("DeviceParameters")
+    }
 )
 
 object EglHdrExtensionFingerprint : Fingerprint(
-    definingClass = "Lcom/tiledmedia/clearvrview/EGLRenderTarget;",
     name = "getIsBt2020HlgExtensionSupported",
-    returnType = "Z"
+    returnType = "Z",
+    custom = { method, classDef ->
+        method.implementation != null && classDef.type.contains("EGLRenderTarget")
+    }
 )
 
 object RenderTargetConfigHlgFingerprint : Fingerprint(
-    definingClass = "Lcom/tiledmedia/clearvrview/RenderTargetConfig;",
     name = "requireHLG",
-    returnType = "Z"
+    returnType = "Z",
+    custom = { method, classDef ->
+        method.implementation != null && classDef.type.contains("RenderTargetConfig")
+    }
 )
 
 object RenderTargetConfigPqFingerprint : Fingerprint(
-    definingClass = "Lcom/tiledmedia/clearvrview/RenderTargetConfig;",
     name = "require2020PQ",
-    returnType = "Z"
+    returnType = "Z",
+    custom = { method, classDef ->
+        method.implementation != null && classDef.type.contains("RenderTargetConfig")
+    }
 )
 
 object DecoderMediaFormatFingerprint : Fingerprint(
-    definingClass = "Lcom/tiledmedia/clearvrdecoder/video/VideoDecoderBridgeShared;",
     name = "getMediaFormat",
     filters = listOf(
         string("height"),
@@ -51,5 +60,8 @@ object DecoderMediaFormatFingerprint : Fingerprint(
             definingClass = "Landroid/media/MediaFormat;",
             name = "setInteger"
         )
-    )
+    ),
+    custom = { method, classDef ->
+        method.implementation != null && classDef.type.contains("VideoDecoderBridgeShared")
+    }
 )
