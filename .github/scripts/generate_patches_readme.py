@@ -16,6 +16,12 @@ import sys
 import os
 from pathlib import Path
 
+if sys.stdout.encoding != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 
 if len(sys.argv) < 3:
     print("Usage: generate_patches_readme.py <owner/repo> <branch> [json] [readme]")

@@ -16,25 +16,19 @@ Using Morphe, you can patch F1 TV directly on your device via **Morphe Manager**
 
 ## 🧩 Included Patches
 
-### 1. `Unlock UHD / 4K Playback` (`unlock4kPlaybackPatch`)
+<!-- PATCHES_START EXPANDED -->
+> **[v0.0.0](https://github.com/ythemelis/f1tv-4k-morphe-patches/releases/tag/v0.0.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;0 patches total
+<!-- PATCHES_END -->
+
+### Patch Details
 * **Device Validator Bypass**: Overrides all 4 `DeviceSupportImpl` capability checks (`validateTmSdkSupport`, `validateLowRamDeviceSupport`, `validateApiLevelSupport`, `validateIsUhdSupportedDevice`) to always report `Pair(true, null)`.
 * **4K Display Size Force**: Overrides `TrueTVDisplaySizeHelper.getDefaultDisplaySize()` to report a `3840x2160` panel. This eliminates TiledMedia's 1.5× display-size cap that normally restricts 1080p UI surfaces to 1620p streams.
 * **Display HDR Capability Spoof**: Forces `DeviceParameters.doesDisplaySupport()` to `true`. Because F1TV's 2160p tier is delivered strictly as HLG HDR, spoofing HDR capability ensures the backend manifest offers the 2160p tier to HDR10-only panels (e.g., NVIDIA Shield).
 * **NVIDIA Workaround Bypass**: Sets `Quirks.deviceNeedsNoPostProcessWorkaround()` to `false`, preventing ClearVR from degrading tile tiers on Tegra hardware.
 * **Decoder Capability Spoof**: Sets `maxNumberOfSecureHEVCSamples = 16`, `maxTileRows = 5`, and `maxTileColumns = 5` in `DecoderCapability.getAsCoreProtobuf()`.
-
-### 2. `Dynamic HDR / Colorspace Routing` (`dynamicColorspacePatch`)
-* **EGL HDR Backend Advertise**: Advertises `getIsBt2020HlgExtensionSupported() -> true` to the F1TV server.
-* **Per-Device Runtime Rerouting** (via `F1TvColorspaceHelper` extension):
-  * **Native HLG**: Where GPU hardware has `EGL_EXT_gl_colorspace_bt2020_hlg` (Homatics, Mi Box, most native HLG TVs), renders with untouched HDR colors.
-  * **HLG → PQ Reroute**: Where only `EGL_EXT_gl_colorspace_bt2020_pq` exists (NVIDIA Shield), reroutes HLG into PQ so the surface succeeds without black crush.
-  * **Direct Video Decoder Path**: Devices lacking both EGL extensions (MediaTek / Amlogic TVs) route to the TV's direct hardware video decoder pipeline.
-
-### 3. `Enable Video Quality Selector` (`videoQualitySelectorPatch`)
-* Forces `DiagnosticsPreferenceManagerImpl.isVideoQualityEnabled() -> true`, exposing the manual resolution/bitrate quality picker in the in-app player settings.
-
-### 4. `Adaptive Playback Decoder Hints` (`adaptiveDecoderPatch`)
-* Injects `max-width` and `max-height` into `MediaFormat` inside `VideoDecoderBridgeShared.getMediaFormat()`. Pre-reserves decoder buffer allocations up to 4K up front to avoid mid-stream re-allocation failures (`TM4014` error) on MediaTek and Amlogic decoders.
+* **Dynamic HDR Colorspace Routing**: Keeps native HLG on HLG TVs, reroutes HLG → PQ on NVIDIA Shield, and routes to direct decoder on MediaTek/Amlogic TVs.
+* **Enable Video Quality Selector**: Exposes manual resolution/bitrate picker in player menu.
+* **Adaptive Playback Decoder Hints**: Pre-reserves decoder buffer allocations up to 4K to prevent `TM4014` crashes.
 
 ---
 
