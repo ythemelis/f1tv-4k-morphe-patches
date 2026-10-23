@@ -1,3 +1,9 @@
+## [1.1.3](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.1.2...v1.1.3) (2026-10-23)
+
+### 🐛 Bug Fixes
+
+* **fingerprints:** use flexible custom filters for all fingerprints to survive class renaming in newer F1TV versions ([cb34faf](https://github.com/ythemelis/f1tv-4k-morphe-patches/commit/cb34faf8cb940ae43c7cc71a5bed1951023247de))
+
 ## [1.1.2](https://github.com/ythemelis/f1tv-4k-morphe-patches/compare/v1.1.1...v1.1.2) (2026-10-23)
 
 ### 🐛 Bug Fixes
