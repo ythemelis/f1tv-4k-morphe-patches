@@ -24,8 +24,9 @@ Using Morphe, you can patch F1 TV directly on your device via **Morphe Manager**
 
 **🎯 Supported versions:**
 
-| 3.0.49.5 | 3.0.49.4 |
-| :---: | :---: |
+| Any (including future) | 3.0.49.5 | 3.0.49.4 |
+| :---: | :---: | :---: |
+| All future versions supported | Confirmed working | Confirmed working |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -60,7 +61,7 @@ Using Morphe, you can patch F1 TV directly on your device via **Morphe Manager**
    * In Morphe Manager, navigate to **Settings > Sources > Patches**.
    * Add this repository or load the downloaded `patches-*.mpp` bundle.
 3. **Select F1 TV**:
-   * Download the official F1 TV Android TV `.apkm` bundle (e.g. version `3.0.49.5` from APKMirror or Google Play).
+   * Download the official F1 TV Android TV `.apkm` bundle (e.g. version `3.0.49.5`, or any newer/future version, from APKMirror or Google Play).
    * Note: Ensure you choose the **Android TV** version (`com.formulaone.production`), **arm64-v8a** split.
 4. **Patch & Install**:
    * Tap **Patch**, select the patches you want (all 4 are enabled by default), and let Morphe build your patched APK.
@@ -96,7 +97,7 @@ adb install-multiple base.apk config.arm64_v8a.apk config.en.apk config.xhdpi.ap
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/f1tv-4k-morphe-patches.git
+git clone https://github.com/ythemelis/f1tv-4k-morphe-patches.git
 cd f1tv-4k-morphe-patches
 
 # Build the Morphe patch package (.mpp)

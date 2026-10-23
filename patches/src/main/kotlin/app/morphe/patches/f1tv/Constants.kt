@@ -16,17 +16,22 @@ object Constants {
         appIconColor = 0xE10600,
         formFactor = FormFactor.TV,
         targets = listOf(
-            // Target any recent or future version
+            // Target any current or future version
             AppTarget(
                 version = null,
-                isExperimental = true
+                isExperimental = false,
+                description = "All future versions supported"
             ),
             // Confirmed working versions
             AppTarget(
-                version = "3.0.49.5"
+                version = "3.0.49.5",
+                isExperimental = false,
+                description = "Confirmed working"
             ),
             AppTarget(
-                version = "3.0.49.4"
+                version = "3.0.49.4",
+                isExperimental = false,
+                description = "Confirmed working"
             )
         )
     )

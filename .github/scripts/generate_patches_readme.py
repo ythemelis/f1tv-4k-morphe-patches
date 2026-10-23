@@ -127,12 +127,14 @@ def versions_table(targets):
         return ""
 
     cells = []
+    valid_targets = []
     for t in targets:
-        ver   = t["version"]
+        ver = t["version"]
         if ver is None:
-            continue
+            ver = "Any (including future)"
         label = f"🧪&nbsp;{ver}" if t.get("isExperimental") else ver
         cells.append(label)
+        valid_targets.append(t)
 
     if not cells:
         return ""
@@ -142,7 +144,7 @@ def versions_table(targets):
     rows = [header, sep]
 
     # Optional description row — only rendered if at least one target has one
-    descs = [(t.get("description") or "").replace("\n", "<br>") for t in targets]
+    descs = [(t.get("description") or "").replace("\n", "<br>") for t in valid_targets]
     if any(descs):
         rows.append("| " + " | ".join(descs) + " |")
 
