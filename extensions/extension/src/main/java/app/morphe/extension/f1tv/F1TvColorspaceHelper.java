@@ -1,5 +1,6 @@
 package app.morphe.extension.f1tv;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 @SuppressWarnings("unused")
@@ -67,5 +68,40 @@ public final class F1TvColorspaceHelper {
         if (originalRequirePq) return true;
         if (!originalRequireHlg) return false;
         return !realHlgSupported();
+    }
+
+    /**
+     * Overload for RenderTargetConfig instances: reads _requireHLG safely via reflection.
+     */
+    public static boolean shouldRequireHlg(Object renderTargetConfig) {
+        if (renderTargetConfig == null) return false;
+        try {
+            Field field = renderTargetConfig.getClass().getDeclaredField("_requireHLG");
+            field.setAccessible(true);
+            return shouldRequireHlg(field.getBoolean(renderTargetConfig));
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
+
+    /**
+     * Overload for RenderTargetConfig instances: reads _require2020PQ and _requireHLG safely via reflection.
+     */
+    public static boolean shouldRequire2020Pq(Object renderTargetConfig) {
+        if (renderTargetConfig == null) return false;
+        try {
+            Class<?> clazz = renderTargetConfig.getClass();
+            Field fPq = clazz.getDeclaredField("_require2020PQ");
+            fPq.setAccessible(true);
+            boolean origPq = fPq.getBoolean(renderTargetConfig);
+
+            Field fHlg = clazz.getDeclaredField("_requireHLG");
+            fHlg.setAccessible(true);
+            boolean origHlg = fHlg.getBoolean(renderTargetConfig);
+
+            return shouldRequire2020Pq(origPq, origHlg);
+        } catch (Throwable ignored) {
+            return false;
+        }
     }
 }
