@@ -32,7 +32,7 @@ val unlock4kPlaybackPatch = bytecodePatch(
                 "validateIsUhdSupportedDevice"
             )
             mutableClass.methods
-                .filter { it.name in validators }
+                .filter { it.name in validators && it.implementation != null }
                 .forEach { method ->
                     method.addInstructions(
                         0,
@@ -57,7 +57,7 @@ val unlock4kPlaybackPatch = bytecodePatch(
         displayHelperDef?.let { classDef ->
             val mutableClass = mutableClassDefBy(classDef)
             mutableClass.methods
-                .filter { it.name == "getDefaultDisplaySize" }
+                .filter { it.name == "getDefaultDisplaySize" && it.implementation != null }
                 .forEach { method ->
                     method.addInstructions(
                         0,
@@ -103,7 +103,7 @@ val unlock4kPlaybackPatch = bytecodePatch(
         decoderCapDef?.let { classDef ->
             val mutableClass = mutableClassDefBy(classDef)
             mutableClass.methods
-                .find { it.name == "getAsCoreProtobuf" }
+                .find { it.name == "getAsCoreProtobuf" && it.implementation != null }
                 ?.addInstructions(
                     0,
                     """

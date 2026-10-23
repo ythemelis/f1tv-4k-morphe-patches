@@ -6,7 +6,10 @@ import app.morphe.patcher.string
 
 object QualitySelectorFingerprint : Fingerprint(
     name = "isVideoQualityEnabled",
-    returnType = "Z"
+    returnType = "Z",
+    custom = { method, classDef ->
+        method.implementation != null && classDef.type.contains("DiagnosticsPreferenceManager")
+    }
 )
 
 object QuirksWorkaroundFingerprint : Fingerprint(

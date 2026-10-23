@@ -14,7 +14,16 @@ val videoQualitySelectorPatch = bytecodePatch(
 
     execute {
         // Force isVideoQualityEnabled() -> true in DiagnosticsPreferenceManagerImpl
-        QualitySelectorFingerprint.method.addInstructions(
+        val targetMethod = QualitySelectorFingerprint.methodOrNull?.takeIf { it.implementation != null }
+            ?: run {
+                val diagClass = classDefByOrNull { it.type.contains("DiagnosticsPreferenceManagerImpl") }
+                diagClass?.let { classDef ->
+                    mutableClassDefBy(classDef).methods
+                        .firstOrNull { it.name == "isVideoQualityEnabled" && it.implementation != null }
+                }
+            }
+
+        targetMethod?.addInstructions(
             0,
             """
                 const/4 v0, 0x1
@@ -23,3 +32,4 @@ val videoQualitySelectorPatch = bytecodePatch(
         )
     }
 }
+
